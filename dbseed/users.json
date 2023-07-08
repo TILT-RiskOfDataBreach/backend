@@ -1,0 +1,23 @@
+[
+  {
+    "company": "Default Corp.",
+    "address": {
+      "street": "Charitéplatz",
+      "number": "1",
+      "zip_code": "10117",
+      "city": "Berlin",
+      "country": "DE",
+      "format": "EU"
+    },
+    "type": "default",
+    "access_lvl": 0,
+    "username": "default_corp",
+    "password": "$2b$12$eqc6X3z2mvXtEoWhFTMpSupUoQ.Gm9MU2zOZUAzvjVwzjIbSuHEuu"
+  },
+  {
+    "username": "admin",
+    "password": "$2b$12$eqc6X3z2mvXtEoWhFTMpSupUoQ.Gm9MU2zOZUAzvjVwzjIbSuHEuu",
+    "type": "admin",
+    "access_lvl": 4
+  }
+]
