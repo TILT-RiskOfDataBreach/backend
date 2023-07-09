@@ -23,10 +23,3 @@ def insert_tilts(tilts):
 def delete_tilt(domain):
     return documents.delete_one({ "meta.url": re.compile("^" + domain + "$|^" + domain + "/|/" +
             domain + "$|\." + domain + "$|/" + domain + "/|\." + domain + "/") }).acknowledged
-
-def delete_tilts(domains):
-    for domain in domains:
-       if not documents.delete_one({ "meta.url": re.compile("^" + domain + "$|^" + domain + "/|/" +
-            domain + "$|\." + domain + "$|/" + domain + "/|\." + domain + "/") }).acknowledged:
-                return False
-    return True

@@ -43,28 +43,15 @@ async def insert_tilts(tilts: Request, user: User = Depends(authenticate)):
 
     return JSONResponse(status_code=200, content={"acknowledged": True})
 
-@router.delete("/tilt/delete", responses={**default_responses, 400: {"model": ModelMessage}})
-async def delete_tilt(tilt: Request, user: User = Depends(authenticate)):
+@router.delete("/{domain}/delete", responses={**default_responses, 400: {"model": ModelMessage}})
+async def delete_tilt(domain: str, user: User = Depends(authenticate)):
     """
     DELETEs a TILT document from the database.
     """
     if user["access_lvl"] != 0 and user["access_lvl"] != 1:
         raise HTTPException(status_code=403, detail="Insufficient authorization level!")
 
-    if delete_tilt(tilt) is False:
+    if delete_tilt(domain) is False:
         return JSONResponse(status_code=400, content={"message": "Error in system, TILT could not be deleted."})
-
-    return JSONResponse(status_code=200, content={"acknowledged": True})
-
-@router.delete("/tilts/delete", responses={**default_responses, 400: {"model": ModelMessage}})
-async def delete_tilts(tilts: Request, user: User = Depends(authenticate)):
-    """
-    DELETEs multiple TILT documents from the database.
-    """
-    if user["access_lvl"] != 0 and user["access_lvl"] != 1:
-        raise HTTPException(status_code=403, detail="Insufficient authorization level!")
-
-    if delete_tilts(tilts) is False:
-        return JSONResponse(status_code=400, content={"message": "Error in system, TILTs could not be deleted."})
 
     return JSONResponse(status_code=200, content={"acknowledged": True})
