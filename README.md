@@ -19,6 +19,20 @@ To force an image rebuild on docker compose, run:
 
 `docker compose up --build`
 
+
+## Security
+
+Replace the `SECRET_KEY` in `src/constants.py` with your own, using the following command:
+
+`openssl rand -hex 32`
+
+Change the `password` property (and other properties if you want to) in `dbseed/init-admin.json`, by aquiring a new password using the following command:
+
+`from passlib.context import CryptContext`
+
+`CryptContext(schemes=["bcrypt"], deprecated="auto").hash("respective_password")`
+
+
 ## Services
 
 Our backend consists of three services: `analysis-engine`, `risk-engine`, and `tilt-engine`.
@@ -452,16 +466,3 @@ Response:
  "acknowledged": "bool"
 }
 ```
-
-
-## Security
-
-Replace the `SECRET_KEY` in `src/constants.py` with your own, using the following command:
-
-`openssl rand -hex 32`
-
-Change the `password` property (and other properties if you want to) in `dbseed/init-admin.json`, by aquiring a new password using the following command:
-
-`from passlib.context import CryptContext`
-
-`CryptContext(schemes=["bcrypt"], deprecated="auto").hash("respective_password")`
