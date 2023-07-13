@@ -16,8 +16,6 @@ router = APIRouter(
 #       API-Analysis
 # <------------------------>
 
-@router.on_event("startup")
-@repeat_every( seconds= 60 * 60 * 24 )
 @router.get("/update", responses=default_responses)
 async def analysis(user: User = Depends(authenticate)):
     if user["access_lvl"] != 0 and user["access_lvl"] != 1:
@@ -28,3 +26,10 @@ async def analysis(user: User = Depends(authenticate)):
     print("updated!")
 
     return JSONResponse(status_code=200, content={"acknowledged": True})
+
+@router.on_event("startup")
+@repeat_every( seconds= 60 * 60 * 24 )
+async def __analysis():
+    print("updating...")
+    update()
+    print("updated!")

@@ -1,10 +1,8 @@
 from fastapi import APIRouter, HTTPException, Depends, Request
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
-from datetime import datetime
 
 from .authentication import User, authenticate
-from ..database.data import insert_tilt, insert_tilts, delete_tilt, delete_tilts
+from ..database.data import insert_tilt, insert_tilts, delete_tilt
 from ..database.models.http_responses import *
 
 
